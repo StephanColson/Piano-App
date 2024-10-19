@@ -1,7 +1,9 @@
+import {Play} from "../Components/Play.jsx";
+
 export function PlayTab(){
     return (
         <>
-            <h1>Instrument Room</h1>
+            <Play/>
         </>
     )
 }
