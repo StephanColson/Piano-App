@@ -5,7 +5,7 @@ export function Instrument(props){
     return (
         <>
             {instruments.map(instru => <div key={instru.id}>
-                <p>{instru.name}</p>
+                <p>{instru.name} (code: {instru.id})</p>
             </div>)}
         </>
     )
