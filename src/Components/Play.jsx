@@ -12,7 +12,7 @@ export function Play() {
         const context = new (window.AudioContext || window.webkitAudioContext)();
         setAudioContext(context);
 
-        Soundfont.instrument(context, 'acoustic_grand_piano').then((instrument) => {
+        Soundfont.instrument(context, 'celesta').then((instrument) => {
             setSoundfont(instrument);
         });
     }, []);
@@ -23,7 +23,7 @@ export function Play() {
         {
             firstNote: firstNote,
             lastNote: lastNote,
-            keyboardConfig: KeyboardShortcuts.HOME_ROW,
+            keyboardConfig: KeyboardShortcuts.QWERTY_ROW,
         }
     );
 

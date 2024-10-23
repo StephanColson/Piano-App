@@ -7,9 +7,9 @@ import 'react-tabs/style/react-tabs.css';
 import {InformationTab} from "./tabs/InformationTab.jsx";
 import {PlayTab} from "./tabs/PlayTab.jsx";
 import {ContactTab} from "./tabs/ContactTab.jsx";
+import {INSTRUMENTS} from "./data/Data.js";
 
 function App() {
-
 
   return (
       <>
@@ -29,7 +29,7 @@ function App() {
                   <PlayTab/>
               </TabPanel>
               <TabPanel>
-                  <InformationTab/>
+                  <InformationTab instruments={INSTRUMENTS}/>
               </TabPanel>
               <TabPanel>
                   <ContactTab/>
