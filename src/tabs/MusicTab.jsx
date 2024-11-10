@@ -1,7 +1,10 @@
-export function MusicTab(){
+import {Music} from "../Components/Music.jsx";
+
+export function MusicTab(props){
+    const {songs} = props;
     return (
         <div>
-            <h1>Music List</h1>
+            <Music songs={songs}/>
         </div>
     )
 }

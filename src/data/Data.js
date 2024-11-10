@@ -128,3 +128,8 @@ export const INSTRUMENTS = [
     { id: 127, name: "woodblock", type: "Percussion" },
     { id: 128, name: "xylophone", type: "Percussion" }
 ];
+
+export const SONGS = [
+    {id: 1, title: "Pacific Rim Theme"},
+    {id: 2, title: "Ezio's Family"}
+]

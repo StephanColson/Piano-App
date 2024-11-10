@@ -7,7 +7,7 @@ import 'react-tabs/style/react-tabs.css';
 import {InstrumentTab} from "./tabs/InstrumentTab.jsx";
 import {PlayTab} from "./tabs/PlayTab.jsx";
 import {ContactTab} from "./tabs/ContactTab.jsx";
-import {INSTRUMENTS} from "./data/Data.js";
+import {INSTRUMENTS, SONGS} from "./data/Data.js";
 import {MusicTab} from "./tabs/MusicTab.jsx";
 import {useState} from "react";
 
@@ -39,7 +39,7 @@ function App() {
                   <InstrumentTab instruments={INSTRUMENTS}/>
               </TabPanel>
               <TabPanel>
-                  <MusicTab/>
+                  <MusicTab songs={SONGS}/>
               </TabPanel>
               <TabPanel>
                   <ContactTab/>
