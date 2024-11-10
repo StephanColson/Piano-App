@@ -130,6 +130,6 @@ export const INSTRUMENTS = [
 ];
 
 export const SONGS = [
-    {id: 1, title: "Pacific Rim Theme"},
-    {id: 2, title: "Ezio's Family"}
-]
+    {id: 1, title: "Pacific Rim Theme", sequence: "f5,e5,g4,a4,c5,d5,c5,d5,c5,d5,d5"},
+    {id: 2, title: "Ezio's Family", sequence: "d6,f6,g6,a6,d6,f6,g6,f6,d6,f6,g6,a6"}
+];
