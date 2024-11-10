@@ -5,9 +5,8 @@ export function PlayTab(props){
     const {instruments, selectedInstrument, updateInstrument} = props
 
     const handleIdChange = (e) => {
-        const newId = Number(e.target.value.trim());  // Convert the input value to a number
+        const newId = Number(e.target.value.trim());
 
-        // Find the instrument that matches the numeric ID
         const newInstrument = instruments.find(inst => inst.id === newId);
 
         if (newInstrument) {

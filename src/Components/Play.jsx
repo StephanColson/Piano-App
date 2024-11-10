@@ -8,13 +8,11 @@ export function Play(props) {
     const [soundfont, setSoundfont] = useState(null);
     const { instrument } = props;
 
-    // Initialize audio context and load the selected instrument when component mounts
     useEffect(() => {
         const context = new (window.AudioContext || window.webkitAudioContext)();
         setAudioContext(context);
 
         if (instrument && instrument.name) {
-            // Load the selected instrument dynamically based on its name
             Soundfont.instrument(context, instrument.name).then((instrument) => {
                 setSoundfont(instrument);
             });
