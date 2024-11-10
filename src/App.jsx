@@ -13,6 +13,10 @@ import {useState} from "react";
 
 function App() {
     const [selectedInstrument, setSelectedInstrument] = useState(INSTRUMENTS.find(inst => inst.name === 'cello'));
+
+    const updateInstrument = (newInstrument) => {
+        setSelectedInstrument(newInstrument);
+    };
   return (
       <>
           <Normalize/>
@@ -29,7 +33,7 @@ function App() {
                   <HomeTab/>
               </TabPanel>
               <TabPanel>
-                  <PlayTab selectedInstrument={selectedInstrument} updateInstrument={setSelectedInstrument}/>
+                  <PlayTab instruments={INSTRUMENTS} selectedInstrument={selectedInstrument} updateInstrument={updateInstrument}/>
               </TabPanel>
               <TabPanel>
                   <InstrumentTab instruments={INSTRUMENTS}/>

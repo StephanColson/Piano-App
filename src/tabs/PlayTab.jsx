@@ -2,7 +2,20 @@ import {Play} from "../Components/Play.jsx";
 import {Form} from "react-bootstrap";
 
 export function PlayTab(props){
-    const {selectedInstrument, updateInstrument} = props
+    const {instruments, selectedInstrument, updateInstrument} = props
+
+    const handleIdChange = (e) => {
+        const newId = Number(e.target.value.trim());  // Convert the input value to a number
+
+        // Find the instrument that matches the numeric ID
+        const newInstrument = instruments.find(inst => inst.id === newId);
+
+        if (newInstrument) {
+            updateInstrument(newInstrument);
+        } else {
+            console.log("Invalid ID");
+        }
+    };
 
     return (
         <>
@@ -14,7 +27,11 @@ export function PlayTab(props){
 
                 <Form.Group>
                     <Form.Label>Instrument ID:</Form.Label>
-                    <Form.Control type="text" readOnly value={selectedInstrument.id}/>
+                    <Form.Control
+                        type="text"
+                        defaultValue={selectedInstrument.id}
+                        onChange={handleIdChange}
+                    />
                 </Form.Group>
 
                 <Form.Group>
