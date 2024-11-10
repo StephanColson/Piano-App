@@ -4,7 +4,6 @@ import { SectionCards } from "../Components/SectionCards.jsx";
 import { Instrument } from "../Components/Instrument.jsx";
 
 export function InstrumentTab({ instruments }) {
-    // Group instruments by their type
     const groupedInstruments = instruments.reduce((acc, instrument) => {
         const { type } = instrument;
         if (!acc[type]) {
@@ -19,9 +18,9 @@ export function InstrumentTab({ instruments }) {
             <h1>List of Instruments</h1>
             {Object.keys(groupedInstruments).map((type) => (
                 <Section key={type} type={type}>
-                    <Row className="justify-content-start"> {/* Flexbox for aligning cards */}
+                    <Row className="justify-content-start">
                         {groupedInstruments[type].map(instrument => (
-                            <SectionCards key={instrument.id}> {/* Render each instrument as a SectionCard */}
+                            <SectionCards key={instrument.id}>
                                 <Instrument instruments={[instrument]} />
                             </SectionCards>
                         ))}

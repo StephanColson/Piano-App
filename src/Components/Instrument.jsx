@@ -1,4 +1,3 @@
-//List All the instrument
 export function Instrument(props){
     const {instruments} = props;
 

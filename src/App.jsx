@@ -9,9 +9,10 @@ import {PlayTab} from "./tabs/PlayTab.jsx";
 import {ContactTab} from "./tabs/ContactTab.jsx";
 import {INSTRUMENTS} from "./data/Data.js";
 import {MusicTab} from "./tabs/MusicTab.jsx";
+import {useState} from "react";
 
 function App() {
-
+    const [selectedInstrument, setSelectedInstrument] = useState(INSTRUMENTS.find(inst => inst.name === 'cello'));
   return (
       <>
           <Normalize/>
@@ -28,7 +29,7 @@ function App() {
                   <HomeTab/>
               </TabPanel>
               <TabPanel>
-                  <PlayTab/>
+                  <PlayTab selectedInstrument={selectedInstrument} updateInstrument={setSelectedInstrument}/>
               </TabPanel>
               <TabPanel>
                   <InstrumentTab instruments={INSTRUMENTS}/>

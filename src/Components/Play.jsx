@@ -3,19 +3,23 @@ import {Piano, MidiNumbers, KeyboardShortcuts} from "react-piano";
 import "react-piano/dist/styles.css";
 import Soundfont from 'soundfont-player';
 
-export function Play() {
+export function Play(props) {
     const [audioContext, setAudioContext] = useState(null);
     const [soundfont, setSoundfont] = useState(null);
+    const { instrument } = props;
 
-    // Initialize audio context and load piano sounds when component mounts
+    // Initialize audio context and load the selected instrument when component mounts
     useEffect(() => {
         const context = new (window.AudioContext || window.webkitAudioContext)();
         setAudioContext(context);
 
-        Soundfont.instrument(context, 'celesta').then((instrument) => {
-            setSoundfont(instrument);
-        });
-    }, []);
+        if (instrument && instrument.name) {
+            // Load the selected instrument dynamically based on its name
+            Soundfont.instrument(context, instrument.name).then((instrument) => {
+                setSoundfont(instrument);
+            });
+        }
+    }, [instrument]);
 
     const firstNote = MidiNumbers.fromNote('c3'); // Lowest note
     const lastNote = MidiNumbers.fromNote('f5');  // Highest note
