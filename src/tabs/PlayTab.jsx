@@ -11,6 +11,7 @@ export function PlayTab(props){
     const [recordedNotes, setRecordedNotes] = useState([]);
     const [selectedSong, setSelectedSong] = useState(null);
     const [songInput, setSongInput] = useState("");
+    const [isPlaying, setIsPlaying] = useState(false);
 
     const toggleRecording = () => {
         setIsRecording(!isRecording);
@@ -30,12 +31,10 @@ export function PlayTab(props){
     };
 
     const handleSongInputChange = (e) => {
-        setSongInput(e.target.value); // Update the input field value
+        setSongInput(e.target.value);
     };
 
-    // Find the song based on the user input and log the sequence
     const handleStartSong = () => {
-        // Find the song based on the user input
         const song = songs.find((s) => s.title.toLowerCase() === songInput.trim().toLowerCase());
 
         if (song) {
@@ -57,6 +56,26 @@ export function PlayTab(props){
 
     const handleClearNotes = () => {
         setRecordedNotes([]);
+    };
+
+    const handlePlayRecord = () => {
+        if(recordedNotes.length === 0){
+            return;
+        }
+
+        setIsPlaying(true);
+        let delay = 0;
+
+        recordedNotes.forEach((note, index) => {
+            setTimeout(() => {
+                handleNotesChange([note]);
+
+                if (index === recordedNotes.length - 1) {
+                    setIsPlaying(false);
+                }
+            }, delay);
+            delay += 500;
+        });
     };
 
     return (
@@ -98,15 +117,18 @@ export function PlayTab(props){
             </Section>
 
             <Section>
-                <Button onClick={toggleRecording}>
+                <Button onClick={toggleRecording} disabled={isPlaying}>
                     {isRecording ? 'Stop Recording' : 'Record'}
                 </Button>
 
-                <Button onClick={handleClearNotes}>
+                <Button onClick={handleClearNotes} disabled={isPlaying}>
                     Clear
                 </Button>
 
-                <div style={{ marginTop: '10px' }}>
+                <Button onClick={handlePlayRecord} disabled={isRecording || isPlaying}>
+                    Play
+                </Button>
+                <div className="my-2">
                     <h3>Recorded Notes:</h3>
                     <div>
                         {recordedNotes.length > 0
