@@ -7,9 +7,15 @@ export function PlayTab(props){
     const {instruments, selectedInstrument, updateInstrument, songs} = props
 
     const [currentNotes, setCurrentNotes] = useState([]);
-
+    const [isRecording, setIsRecording] = useState(false);
+    const [recordedNotes, setRecordedNotes] = useState([]);
     const [selectedSong, setSelectedSong] = useState(null);
     const [songInput, setSongInput] = useState("");
+
+    const toggleRecording = () => {
+        setIsRecording(!isRecording);
+    }
+
 
     const handleIdChange = (e) => {
         const newId = Number(e.target.value.trim());
@@ -43,6 +49,10 @@ export function PlayTab(props){
 
     const handleNotesChange = (notes) => {
         setCurrentNotes(notes);
+
+        if(isRecording && notes.length > 0){
+            setRecordedNotes(prevNotes => [...prevNotes, ...notes])
+        }
     };
 
     return (
@@ -74,12 +84,28 @@ export function PlayTab(props){
             <Play instrument={selectedInstrument} updateInstrument={updateInstrument} onNoteChange={handleNotesChange}/>
 
             <Section className="d-flex mt-2">
-                <h3>Recorded Notes:</h3>
+                <h3>Note:</h3>
                 <div>
                     {currentNotes.length > 0
                         ? currentNotes.map((note, index) => <span key={index}>{`Note: ${note} `}</span>)
                         : <span>No notes pressed</span>
                     }
+                </div>
+            </Section>
+
+            <Section>
+                <Button onClick={toggleRecording}>
+                    {isRecording ? 'Stop Recording' : 'Record'}
+                </Button>
+
+                <div style={{ marginTop: '10px' }}>
+                    <h3>Recorded Notes:</h3>
+                    <div>
+                        {recordedNotes.length > 0
+                            ? recordedNotes.map((note, index) => <span key={index}>{`Note: ${note} `}</span>)
+                            : <span>No recorded notes</span>
+                        }
+                    </div>
                 </div>
             </Section>
         </>
