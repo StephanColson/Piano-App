@@ -4,9 +4,10 @@ import "react-piano/dist/styles.css";
 import Soundfont from 'soundfont-player';
 
 export function Play(props) {
+    const {instrument, onNoteChange} = props;
     const [audioContext, setAudioContext] = useState(null);
     const [soundfont, setSoundfont] = useState(null);
-    const { instrument } = props;
+    const [currentEvents, setCurrentEvents] = useState([]);
 
     useEffect(() => {
         const context = new (window.AudioContext || window.webkitAudioContext)();
@@ -33,12 +34,22 @@ export function Play(props) {
         if (soundfont) {
             soundfont.play(midiNumber);
         }
+        setCurrentEvents(prevEvents => {
+            const updatedEvents = [...prevEvents, midiNumber];
+            onNoteChange(updatedEvents);
+            return updatedEvents;
+        });
     };
 
     const stopNote = (midiNumber) => {
         if (soundfont) {
             soundfont.stop(midiNumber);
         }
+        setCurrentEvents((prevEvents) => {
+            const updatedEvents = prevEvents.filter(note => note !== midiNumber);
+            onNoteChange(updatedEvents);
+            return updatedEvents;
+        });
     };
 
     return (
