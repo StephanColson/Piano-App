@@ -55,6 +55,10 @@ export function PlayTab(props){
         }
     };
 
+    const handleClearNotes = () => {
+        setRecordedNotes([]);
+    };
+
     return (
         <>
             <Form className="d-flex justify-content-evenly my-2">
@@ -96,6 +100,10 @@ export function PlayTab(props){
             <Section>
                 <Button onClick={toggleRecording}>
                     {isRecording ? 'Stop Recording' : 'Record'}
+                </Button>
+
+                <Button onClick={handleClearNotes}>
+                    Clear
                 </Button>
 
                 <div style={{ marginTop: '10px' }}>
