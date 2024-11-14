@@ -1,6 +1,7 @@
-import {Col, Container, Row} from "react-bootstrap";
+import {Col,Row} from "react-bootstrap";
 
-export function Section({type, children}) {
+export function Section(props) {
+    const {type, children} = props;
     return (
         <div className="mb-4">
             <Row>
@@ -8,7 +9,6 @@ export function Section({type, children}) {
                     <h2>{type}</h2>
                 </Col>
             </Row>
-            {/* This will contain all the child cards */}
             <Row className="justify-content-start">
                 {children}
             </Row>

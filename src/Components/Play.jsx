@@ -20,8 +20,8 @@ export function Play(props) {
         }
     }, [instrument]);
 
-    const firstNote = MidiNumbers.fromNote('c3'); // Lowest note
-    const lastNote = MidiNumbers.fromNote('f7');  // Highest note
+    const firstNote = MidiNumbers.fromNote('c3');
+    const lastNote = MidiNumbers.fromNote('f7');
     const keyboardShortcuts = KeyboardShortcuts.create(
         {
             firstNote: firstNote,

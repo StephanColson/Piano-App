@@ -4,9 +4,8 @@ import { Form } from "react-bootstrap";
 export function MusicTab(props) {
     const { songs, searchQuery, setSearchQuery } = props;
 
-    // Filter songs by the full search query (it will include any typed text)
     const searchFilter = songs.filter(song =>
-        song.title.toLowerCase().includes(searchQuery.toLowerCase()) // Search by title
+        song.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
     return (

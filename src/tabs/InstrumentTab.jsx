@@ -31,7 +31,7 @@ export function InstrumentTab(props) {
                         type="text"
                         placeholder="Type an instrument name or genre"
                         value={searchQuery}  // Bind the input value to searchQuery
-                        onChange={(e) => setSearchQuery(e.target.value)}  // Update searchQuery when input changes
+                        onChange={(e) => setSearchQuery(e.target.value)}
                     />
                 </Form.Group>
             </Form>
@@ -41,7 +41,7 @@ export function InstrumentTab(props) {
                     <Row className="justify-content-start">
                         {groupedInstruments[type].map(instrument => (
                             <SectionCards key={instrument.id}>
-                                <Instrument instruments={[instrument]} />  {/* Pass the filtered instrument */}
+                                <Instrument instruments={[instrument]} />
                             </SectionCards>
                         ))}
                     </Row>
