@@ -58,19 +58,26 @@ export function PlayTab(props){
         setIsPlaying(true);
         let delay = 0;
 
+        // Convert notes to MIDI and play them
         notes.forEach((note, index) => {
-            setTimeout(() => {
-                const midiNote = noteToMidi[note.toLowerCase()];
-                if (midiNote) {
+            const midiNote = noteToMidi[note.toLowerCase()];
+            if (midiNote) {
+                setTimeout(() => {
+                    // Play the note
                     handleNotesChange([note]);
-                    console.log(`Playing note: ${note} (MIDI: ${midiNote})`);
-                }
 
-                if (index === notes.length - 1) {
-                    setIsPlaying(false);
-                }
-            }, delay);
-            delay += 500; // Add 500ms delay between notes
+                    // Trigger the sound via `onPlayNoteInput`
+                    onPlayNoteInput(midiNote);
+                    console.log(`Playing note: ${note} (MIDI: ${midiNote})`);
+
+                    // Stop the note after 500ms
+                    setTimeout(() => {
+                        onStopNoteInput(midiNote);
+                    }, 500);
+                }, delay);
+
+                delay += 500; // Add delay between notes
+            }
         });
     };
 

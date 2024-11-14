@@ -17,9 +17,12 @@ function App() {
     const updateInstrument = (newInstrument) => {
         setSelectedInstrument(newInstrument);
     };
+
+    const [searchQuery, setSearchQuery] = useState('');
   return (
       <>
           <Normalize/>
+
           <Tabs>
               <TabList>
                   <Tab>Home</Tab>
@@ -33,13 +36,14 @@ function App() {
                   <HomeTab/>
               </TabPanel>
               <TabPanel>
-                  <PlayTab instruments={INSTRUMENTS} selectedInstrument={selectedInstrument} updateInstrument={updateInstrument} songs={SONGS}/>
+                  <PlayTab instruments={INSTRUMENTS} selectedInstrument={selectedInstrument}
+                           updateInstrument={updateInstrument} songs={SONGS}/>
               </TabPanel>
               <TabPanel>
-                  <InstrumentTab instruments={INSTRUMENTS}/>
+                  <InstrumentTab instruments={INSTRUMENTS} searchQuery={searchQuery}/>
               </TabPanel>
               <TabPanel>
-                  <MusicTab songs={SONGS}/>
+                  <MusicTab songs={SONGS} searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
               </TabPanel>
               <TabPanel>
                   <ContactTab/>

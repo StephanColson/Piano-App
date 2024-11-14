@@ -1,10 +1,27 @@
-import {Music} from "../Components/Music.jsx";
+import { Music } from "../Components/Music.jsx";
+import { Form } from "react-bootstrap";
 
-export function MusicTab(props){
-    const {songs} = props;
+export function MusicTab(props) {
+    const { songs, searchQuery, setSearchQuery } = props;
+
+    // Filter songs by the full search query (it will include any typed text)
+    const searchFilter = songs.filter(song =>
+        song.title.toLowerCase().includes(searchQuery.toLowerCase()) // Search by title
+    );
+
     return (
-        <div>
-            <Music songs={songs}/>
-        </div>
-    )
+        <>
+            <Form className="mb-3">
+                <Form.Label htmlFor="find">Search for a Song:</Form.Label>
+                <Form.Control
+                    id="find"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Type song name here..."
+                />
+            </Form>
+
+            <Music songs={searchFilter} />
+        </>
+    );
 }
