@@ -13,6 +13,7 @@ import {MusicTab} from "./tabs/MusicTab.jsx";
 import {useState} from "react";
 import {MusicFromDB} from "./tabs/MusicFromDB.jsx";
 import {InstrumentFromDB} from "./tabs/InstrumentFromDB.jsx";
+import {AddSongsTab} from "./tabs/AddSongsTab.jsx";
 
 function App() {
     const [selectedInstrument, setSelectedInstrument] = useState(INSTRUMENTS.find(inst => inst.name === 'cello'));
@@ -35,6 +36,7 @@ function App() {
                   <Tab>Contact</Tab>
                   <Tab>Music From Database</Tab>
                   <Tab>Instruments From Database</Tab>
+                  <Tab>Sequencing</Tab>
               </TabList>
 
               <TabPanel>
@@ -54,10 +56,13 @@ function App() {
                   <ContactTab/>
               </TabPanel>
               <TabPanel>
-                  <MusicFromDB songs={SONGS}/>
+                  <MusicFromDB/>
               </TabPanel>
               <TabPanel>
                   <InstrumentFromDB/>
+              </TabPanel>
+              <TabPanel>
+                  <AddSongsTab/>
               </TabPanel>
           </Tabs>
       </>
