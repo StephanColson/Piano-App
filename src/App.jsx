@@ -40,7 +40,7 @@ function App() {
                            updateInstrument={updateInstrument} songs={SONGS}/>
               </TabPanel>
               <TabPanel>
-                  <InstrumentTab instruments={INSTRUMENTS} searchQuery={searchQuery}/>
+                  <InstrumentTab instruments={INSTRUMENTS} searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
               </TabPanel>
               <TabPanel>
                   <MusicTab songs={SONGS} searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
