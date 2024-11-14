@@ -58,25 +58,21 @@ export function PlayTab(props){
         setIsPlaying(true);
         let delay = 0;
 
-        // Convert notes to MIDI and play them
         notes.forEach((note, index) => {
             const midiNote = noteToMidi[note.toLowerCase()];
             if (midiNote) {
                 setTimeout(() => {
-                    // Play the note
                     handleNotesChange([note]);
 
-                    // Trigger the sound via `onPlayNoteInput`
                     onPlayNoteInput(midiNote);
                     console.log(`Playing note: ${note} (MIDI: ${midiNote})`);
 
-                    // Stop the note after 500ms
                     setTimeout(() => {
                         onStopNoteInput(midiNote);
                     }, 500);
                 }, delay);
 
-                delay += 500; // Add delay between notes
+                delay += 500;
             }
         });
     };
@@ -152,15 +148,15 @@ export function PlayTab(props){
             </Section>
 
             <Section>
-                <Button onClick={toggleRecording} disabled={isPlaying}>
+                <Button onClick={toggleRecording} disabled={isPlaying} className="mb-2">
                     {isRecording ? 'Stop Recording' : 'Record'}
                 </Button>
 
-                <Button onClick={handleClearNotes} disabled={isPlaying}>
+                <Button onClick={handleClearNotes} disabled={isPlaying} className="mb-2">
                     Clear
                 </Button>
 
-                <Button onClick={handlePlayRecord} disabled={isRecording || isPlaying}>
+                <Button onClick={handlePlayRecord} disabled={isRecording || isPlaying} className="mb-2">
                     Play
                 </Button>
                 <div className="my-2">
