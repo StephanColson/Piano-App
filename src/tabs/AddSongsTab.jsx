@@ -50,7 +50,7 @@ export function AddSongsTab() {
 
             <h2>Available Songs</h2>
             <Container>
-                <Music songs={songs}/>
+                <Music songs={songs} showDelete={false}/>
             </Container>
         </Section>
     );

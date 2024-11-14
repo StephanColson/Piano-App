@@ -20,7 +20,7 @@ export function MusicTab(props) {
                 />
             </Form>
 
-            <Music songs={searchFilter} />
+            <Music songs={searchFilter} showDelete={false}/>
         </>
     );
 }
