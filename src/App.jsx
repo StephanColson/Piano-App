@@ -54,7 +54,7 @@ function App() {
                   <ContactTab/>
               </TabPanel>
               <TabPanel>
-                  <MusicFromDB/>
+                  <MusicFromDB songs={SONGS}/>
               </TabPanel>
               <TabPanel>
                   <InstrumentFromDB/>

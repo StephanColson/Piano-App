@@ -12,7 +12,7 @@ const musicConverter = {
 }
 
 export function MusicFromDB(){
-    const collectionRef = collection(firestoreDB, 'songs').withConverter(musicConverter);
+    const collectionRef = collection(firestoreDB, 'Songs').withConverter(musicConverter);
     const [values, loading, error] = useCollectionData(collectionRef);
     console.log({values, loading, error});
     return(
