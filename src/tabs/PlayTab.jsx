@@ -13,6 +13,12 @@ export function PlayTab(props){
     const [songInput, setSongInput] = useState("");
     const [isPlaying, setIsPlaying] = useState(false);
 
+    const noteToMidi = {
+        'c': 60, 'c#': 61, 'd': 62, 'd#': 63, 'e': 64, 'f': 65, 'f#': 66, 'g': 67, 'g#': 68, 'a': 69, 'a#': 70, 'b': 71,
+        'c5': 72, 'c#5': 73, 'd5': 74, 'd#5': 75, 'e5': 76, 'f5': 77, 'f#5': 78, 'g5': 79, 'g#5': 80, 'a5': 81, 'a#5': 82, 'b5': 83,
+        'c6': 84, 'c#6': 85, 'd6': 86, 'd#6': 87, 'e6': 88, 'f6': 89, 'f#6': 90, 'g6': 91, 'g#6': 92, 'a6': 93, 'a#6': 94, 'b6': 95
+    };
+
     const toggleRecording = () => {
         setIsRecording(!isRecording);
     }
@@ -41,9 +47,31 @@ export function PlayTab(props){
             setSelectedSong(song);
             console.log(`Song selected: ${song.title}`);
             console.log(`Song sequence: ${song.sequence}`);
+            playSongSequence(song.sequence);
         } else {
             console.log("Song not found");
         }
+    };
+
+    const playSongSequence = (sequence) => {
+        const notes = sequence.split(',');
+        setIsPlaying(true);
+        let delay = 0;
+
+        notes.forEach((note, index) => {
+            setTimeout(() => {
+                const midiNote = noteToMidi[note.toLowerCase()];
+                if (midiNote) {
+                    handleNotesChange([note]);
+                    console.log(`Playing note: ${note} (MIDI: ${midiNote})`);
+                }
+
+                if (index === notes.length - 1) {
+                    setIsPlaying(false);
+                }
+            }, delay);
+            delay += 500; // Add 500ms delay between notes
+        });
     };
 
     const handleNotesChange = (notes) => {

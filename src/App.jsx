@@ -33,7 +33,7 @@ function App() {
                   <HomeTab/>
               </TabPanel>
               <TabPanel>
-                  <PlayTab instruments={INSTRUMENTS} selectedInstrument={selectedInstrument} updateInstrument={updateInstrument}/>
+                  <PlayTab instruments={INSTRUMENTS} selectedInstrument={selectedInstrument} updateInstrument={updateInstrument} songs={SONGS}/>
               </TabPanel>
               <TabPanel>
                   <InstrumentTab instruments={INSTRUMENTS}/>
