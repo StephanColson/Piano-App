@@ -1,3 +1,4 @@
+import "./services/firebase.js";
 import {Normalize} from "styled-normalize";
 import {HomeTab} from "./tabs/HomeTab.jsx";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -10,6 +11,8 @@ import {ContactTab} from "./tabs/ContactTab.jsx";
 import {INSTRUMENTS, SONGS} from "./data/Data.js";
 import {MusicTab} from "./tabs/MusicTab.jsx";
 import {useState} from "react";
+import {MusicFromDB} from "./tabs/MusicFromDB.jsx";
+import {InstrumentFromDB} from "./tabs/InstrumentFromDB.jsx";
 
 function App() {
     const [selectedInstrument, setSelectedInstrument] = useState(INSTRUMENTS.find(inst => inst.name === 'cello'));
@@ -30,6 +33,8 @@ function App() {
                   <Tab>Instruments</Tab>
                   <Tab>Music</Tab>
                   <Tab>Contact</Tab>
+                  <Tab>Music From Database</Tab>
+                  <Tab>Instruments From Database</Tab>
               </TabList>
 
               <TabPanel>
@@ -47,6 +52,12 @@ function App() {
               </TabPanel>
               <TabPanel>
                   <ContactTab/>
+              </TabPanel>
+              <TabPanel>
+                  <MusicFromDB/>
+              </TabPanel>
+              <TabPanel>
+                  <InstrumentFromDB/>
               </TabPanel>
           </Tabs>
       </>
