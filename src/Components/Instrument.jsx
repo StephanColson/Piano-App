@@ -1,5 +1,5 @@
 export function Instrument(props){
-    const {instruments} = props;
+    const {instruments = []} = props;
 
     return (
         <>
