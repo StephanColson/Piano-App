@@ -4,7 +4,8 @@ import {useCollectionData} from "react-firebase-hooks/firestore";
 import {firestoreDB} from "../services/firebase.js";
 import {useState} from "react";
 import {Section} from "../Components/Section.jsx";
-import {Button, Form} from "react-bootstrap"; // Import PlayTab component
+import {Button, Form} from "react-bootstrap";
+
 
 const musicConverter = {
     toFirestore: function (dataInApp) {
@@ -15,28 +16,25 @@ const musicConverter = {
     },
     fromFirestore: function (snapshot, options) {
         const data = snapshot.data(options);
-        return {...data, id: snapshot.id, ref: snapshot.ref};
+        return {...data, id: snapshot.id, ref: snapshot.ref}
     }
 };
 
-export function MusicFromDB(props) {
-    const {searchQuery, setSearchQuery, onDataFetched} = props;
+export function MusicFromDB(){
+
     const [title, setTitle] = useState('');
     const [sequence, setSequence] = useState('');
 
     const collectionRef = collection(firestoreDB, 'Songs').withConverter(musicConverter);
     const [values, loading, error] = useCollectionData(collectionRef);
-
-    if (values && onDataFetched) {
-        onDataFetched(values);
-    }
+    console.log({values, loading, error});
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         const newSong = {
             title: title,
-            sequence: sequence,
+            sequence: sequence
         };
 
         try {
@@ -59,7 +57,7 @@ export function MusicFromDB(props) {
         }
     };
 
-    return (
+    return(
         <Section>
             <h2>Add a New Song</h2>
             <Form onSubmit={handleSubmit} className="my-3">
@@ -88,7 +86,7 @@ export function MusicFromDB(props) {
             {loading && <p>Loading songs...</p>}
             {error && <p>Error: {error.message}</p>}
 
-            <Music songs={values} onDelete={handleDelete} />
+            <Music songs={values} onDelete={handleDelete}/>
         </Section>
-    );
+    )
 }
