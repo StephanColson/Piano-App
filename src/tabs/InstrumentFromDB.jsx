@@ -11,10 +11,15 @@ const instrumentConverter = {
     }
 }
 
-export function InstrumentFromDB(){
+export function InstrumentFromDB(props){
+    const {searchQuery, setSearchQuery, onDataFetched} = props;
     const collectionRef = collection(firestoreDB, 'Instruments').withConverter(instrumentConverter);
     const [values, loading, error] = useCollectionData(collectionRef);
     console.log({values, loading, error});
+
+    if (values && onDataFetched) {
+        onDataFetched(values);
+    }
 
     return(
         <Instrument instruments={values}/>
