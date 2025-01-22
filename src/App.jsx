@@ -32,9 +32,8 @@ function App() {
                   <Tab>Home</Tab>
                   <Tab>Play</Tab>
                   <Tab>Instruments</Tab>
-                  <Tab>Music</Tab>
                   <Tab>Contact</Tab>
-                  <Tab>Music From Database</Tab>
+                  <Tab>Music</Tab>
                   <Tab>Instruments From Database</Tab>
                   <Tab>Sequencing</Tab>
               </TabList>
@@ -48,9 +47,6 @@ function App() {
               </TabPanel>
               <TabPanel>
                   <InstrumentTab instruments={INSTRUMENTS} searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
-              </TabPanel>
-              <TabPanel>
-                  <MusicTab songs={SONGS} searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
               </TabPanel>
               <TabPanel>
                   <ContactTab/>
